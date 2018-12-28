@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="ubclebob2013.github.io/"/>
-  <updated>2018-12-28T04:01:50.125Z</updated>
+  <updated>2018-12-28T09:57:54.090Z</updated>
   <id>ubclebob2013.github.io/</id>
   
   <author>
@@ -15,6 +15,31 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>kubernetes架构</title>
+    <link href="ubclebob2013.github.io/2018/12/28/kubernetes%E6%9E%B6%E6%9E%84/"/>
+    <id>ubclebob2013.github.io/2018/12/28/kubernetes架构/</id>
+    <published>2018-12-28T09:44:27.000Z</published>
+    <updated>2018-12-28T09:57:54.090Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="k8s架构"><a href="#k8s架构" class="headerlink" title="k8s架构"></a>k8s架构</h1><p>节选自 <strong><a href="https://draveness.me/understanding-kubernetes" target="_blank" rel="noopener">https://draveness.me/understanding-kubernetes</a></strong> 请大家到原网站观看更多内容</p><p>Kubernetes 遵循非常传统的客户端服务端架构，客户端通过 RESTful 接口或者直接使用 kubectl 与 Kubernetes 集群进行通信，这两者在实际上并没有太多的区别，后者也只是对 Kubernetes 提供的 RESTful API 进行封装并提供出来。</p><p><img src="https://img.draveness.me/2018-11-25-kubernetes-architecture.png" alt="KUBERNETES ARCHITECTURE"></p><p>每一个 Kubernetes 就集群都由一组 Master 节点和一系列的 Worker 节点组成，其中 Master 节点主要负责存储集群的状态并为 Kubernetes 对象分配和调度资源。</p><a id="more"></a><h1 id="Master"><a href="#Master" class="headerlink" title="Master"></a>Master</h1><p>作为管理集群状态的 Master 节点，它主要负责接收客户端的请求，安排容器的执行并且运行控制循环，将集群的状态向目标状态进行迁移，Master 节点内部由三个组件构成：</p><p><img src="https://img.draveness.me/2018-11-25-kubernetes-master-node.png" alt="KUBERNETES MASTER NODE"></p><p>其中 API Server 负责处理来自用户的请求，其主要作用就是对外提供 RESTful 的接口，包括用于查看集群状态的读请求以及改变集群状态的写请求，也是唯一一个与 etcd 集群通信的组件。</p><p>而 Controller 管理器运行了一系列的控制器进程，这些进程会按照用户的期望状态在后台不断地调节整个集群中的对象，当服务的状态发生了改变，控制器就会发现这个改变并且开始向目标状态迁移。</p><p>最后的 Scheduler 调度器其实为 Kubernetes 中运行的 Pod 选择部署的 Worker 节点，它会根据用户的需要选择最能满足请求的节点来运行 Pod，它会在每次需要调度 Pod 时执行。</p><h1 id="Worker"><a href="#Worker" class="headerlink" title="Worker"></a>Worker</h1><p>其他的 Worker 节点实现就相对比较简单了，它主要由 kubelet 和 kube-proxy 两部分组成：</p><p><img src="https://img.draveness.me/2018-11-25-kubernetes-worker-node.png" alt="KUBERNETES WORKER NODE"></p><p>kubelet 是一个节点上的主要服务，它周期性地从 API Server 接受新的或者修改的 Pod 规范并且保证节点上的 Pod 和其中容器的正常运行，还会保证节点会向目标状态迁移，该节点仍然会向 Master 节点发送宿主机的健康状况。</p><p>另一个运行在各个节点上的代理服务 kube-proxy 负责宿主机的子网管理，同时也能将服务暴露给外部，其原理就是在多个隔离的网络中把请求转发给正确的 Pod 或者容器。</p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;k8s架构&quot;&gt;&lt;a href=&quot;#k8s架构&quot; class=&quot;headerlink&quot; title=&quot;k8s架构&quot;&gt;&lt;/a&gt;k8s架构&lt;/h1&gt;&lt;p&gt;节选自 &lt;strong&gt;&lt;a href=&quot;https://draveness.me/understanding-kubernetes&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;https://draveness.me/understanding-kubernetes&lt;/a&gt;&lt;/strong&gt; 请大家到原网站观看更多内容&lt;/p&gt;
+&lt;p&gt;Kubernetes 遵循非常传统的客户端服务端架构，客户端通过 RESTful 接口或者直接使用 kubectl 与 Kubernetes 集群进行通信，这两者在实际上并没有太多的区别，后者也只是对 Kubernetes 提供的 RESTful API 进行封装并提供出来。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://img.draveness.me/2018-11-25-kubernetes-architecture.png&quot; alt=&quot;KUBERNETES ARCHITECTURE&quot;&gt;&lt;/p&gt;
+&lt;p&gt;每一个 Kubernetes 就集群都由一组 Master 节点和一系列的 Worker 节点组成，其中 Master 节点主要负责存储集群的状态并为 Kubernetes 对象分配和调度资源。&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="kubernetes" scheme="ubclebob2013.github.io/categories/kubernetes/"/>
+    
+    
+      <category term="kubernetes" scheme="ubclebob2013.github.io/tags/kubernetes/"/>
+    
+  </entry>
   
   <entry>
     <title>kubernetes总结</title>
