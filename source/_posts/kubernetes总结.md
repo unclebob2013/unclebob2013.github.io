@@ -5,6 +5,7 @@ tags:
 - kubernetes
 categories: kubernetes
 top: true
+copyright: true
 ---
 # kubernetes 总结
 ## 基础
