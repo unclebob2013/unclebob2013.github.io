@@ -81,3 +81,16 @@ deploy:
   type: git
   repo: git@github.com:unclebob2013/unclebob2013.github.io.git
   branch: master
+
+plugin:
+- hexo-generator-feed
+feed:
+type: atom
+path: atom.xml
+limit: 20
+
+search:
+  path: search.xml
+  field: post
+  format: html
+  limit: 10000
