@@ -454,9 +454,9 @@
           
 
   
-    <div class="comments" id="comments">
+    <div id="gitalk-container">
     </div>
-
+    
   
 
 
@@ -794,32 +794,33 @@
 
 
 
-  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+
+
+
   
   
-  <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/gitalk@1.4.0/dist/gitalk.min.js"></script>
 
-  <script>
-    var GUEST = ['nick','mail','link'];
-    var guest = 'nick,mail,link';
-    guest = guest.split(',').filter(function (item) {
-      return GUEST.indexOf(item)>-1;
-    });
-    new Valine({
-        el: '#comments' ,
-        verify: false,
-        notify: false,
-        appId: 'aigSehAKspRQDsk5JSvXdhpS-gzGzoHsz',
-        appKey: 'thUd0KbdKkby3JnjaN64qiSq',
-        placeholder: 'Just go go',
-        avatar:'mm',
-        meta:guest,
-        pageSize:'10' || 10,
-        visitor: true
-    });
-  </script>
+  
+  
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1.4.0/dist/gitalk.css">
 
+  
+  
+  <script src="//cdn.jsdelivr.net/npm/js-md5@0.7.3/src/md5.min.js"></script>
 
+   <script>
+        var gitalk = new Gitalk({
+          clientID: '504e2c53df2ebd36a42b',
+          clientSecret: 'fcff8c4f076aa8a6ef77cf53dc008ed1af0c6fa7',
+          repo: 'unclebob2013.github.io',
+          owner: 'gongyue33333@gmail.com',
+          admin: [''],
+          id: md5(location.pathname),
+          distractionFreeMode: 'false'
+        })
+        gitalk.render('gitalk-container')
+       </script>
 
 
   
